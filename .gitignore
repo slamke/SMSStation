@@ -3,5 +3,5 @@
 *.dex
 *.apk
 
-/bin
-/.settings
+SMSStattion/bin
+SMSStattion/.settings
