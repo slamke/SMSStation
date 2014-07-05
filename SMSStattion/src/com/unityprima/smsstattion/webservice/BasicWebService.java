@@ -23,31 +23,34 @@ import android.util.Log;
 import com.unityprima.smsstattion.utils.Message;
 
 public class BasicWebService {
+	
 	protected HttpClient httpclient;
+	
 	private final int REQUEST_TIMEOUT = 10 * 1000;// 设置请求超时10秒钟
-	private final int SO_TIMEOUT = 10 * 1000; //设置等待数据超时时间10秒钟
+	
+	private final int SO_TIMEOUT = 10 * 1000; // 设置等待数据超时时间10秒钟
+
 	public BasicWebService() {
 		BasicHttpParams httpParams = new BasicHttpParams();
-		httpParams.setParameter("charset", HTTP.UTF_8); 
-		HttpConnectionParams.setConnectionTimeout(httpParams,
-				REQUEST_TIMEOUT);
+		httpParams.setParameter("charset", HTTP.UTF_8);
+		HttpConnectionParams.setConnectionTimeout(httpParams, REQUEST_TIMEOUT);
 		HttpConnectionParams.setSoTimeout(httpParams, SO_TIMEOUT);
 		httpclient = new DefaultHttpClient(httpParams);
 	}
 
-	public String sendPostRequest(String url,Map<String, String> args) {
+	public String sendPostRequest(String url, Map<String, String> args) {
 		try {
 			HttpPost httpPost = new HttpPost(url);
 			httpPost.addHeader("Accept", "application/json");
 			if (args != null) {
-				List<BasicNameValuePair> postData = new ArrayList<BasicNameValuePair>(); 
+				List<BasicNameValuePair> postData = new ArrayList<BasicNameValuePair>();
 				for (Map.Entry<String, String> entry : args.entrySet()) {
-				    postData.add(new BasicNameValuePair(entry.getKey(), 
-				    entry.getValue())); 
+					postData.add(new BasicNameValuePair(entry.getKey(), entry
+							.getValue()));
 				}
-				UrlEncodedFormEntity entity = new UrlEncodedFormEntity( 
-                        postData, HTTP.UTF_8);
-				httpPost.setEntity(entity);		
+				UrlEncodedFormEntity entity = new UrlEncodedFormEntity(
+						postData, HTTP.UTF_8);
+				httpPost.setEntity(entity);
 			}
 			HttpResponse response = httpclient.execute(httpPost);
 			HttpEntity entity1 = response.getEntity();

@@ -6,9 +6,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class Reader {
- private Reader ()
- {}
- /**
+	private Reader ()
+	{}
+ 	/**
 	 * ��������ֵ
 	 * 
 	 * @param instream
@@ -23,12 +23,10 @@ public class Reader {
 			for (String line = r.readLine(); line != null; line = r.readLine()) {
 				sb.append(line);
 			}
-
 			instream.close();
 
 		} catch (IOException e) {
 		}
 		return sb.toString();
-
 	}
 }

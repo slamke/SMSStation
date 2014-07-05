@@ -16,6 +16,7 @@
     <!-- 往sdcard中写入数据的权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
     </uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -38,10 +39,10 @@
         </activity>
         <receiver android:name="com.unityprima.smsstattion.receiver.StartUpReceiver">  
             <intent-filter>  
-                <action android:name="android.intent.action.BOOT_COMPLETED" />  
-                <category android:name="android.intent.category.HOME" />  
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>  
         </receiver>
+        <service android:name="com.unityprima.smsstattion.service.MonitorPowerService"  android:enabled="true"/>
         <service android:name=".SMSService"/>
     </application>
 
