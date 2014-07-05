@@ -1,0 +1,7 @@
+*.cache 
+*~
+*.dex
+*.apk
+
+/bin
+/.settings
