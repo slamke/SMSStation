@@ -36,6 +36,12 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:screenOrientation="portrait">
         </activity>
+        <receiver android:name="com.unityprima.smsstattion.receiver.StartUpReceiver">  
+            <intent-filter>  
+                <action android:name="android.intent.action.BOOT_COMPLETED" />  
+                <category android:name="android.intent.category.HOME" />  
+            </intent-filter>  
+        </receiver>
         <service android:name=".SMSService"/>
     </application>
 
