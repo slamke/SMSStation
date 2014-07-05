@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -28,8 +27,7 @@ public class SettingActivity extends Activity implements OnClickListener{
         setContentView(R.layout.activity_setting);
         setupViews();
         initViews();
-        
-        
+
 	}
 	
 	//加载控件
