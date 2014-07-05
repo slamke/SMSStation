@@ -51,7 +51,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 		SharedPreferences settingInfo = getSharedPreferences(Message.PREFERENCE_NAME, MODE_PRIVATE); 
 		
         int messageLoopClock = settingInfo.getInt(Message.MESSAGE_LOOP_CLOCK, DefaultSettingInfo.DEFAULT_LOOP_CYCLE);  
-        int powerThreshold = settingInfo.getInt(Message.POWER_THRESHOLD, DefaultSettingInfo.DEFAULT_WARNING_BATTERY_THRESHOLD);
+        int powerThreshold = settingInfo.getInt(Message.POWER_THRESHOLD, DefaultSettingInfo.DEFAULT_WARNING_POWER_THRESHOLD);
         String noticerPhoneNumber = settingInfo.getString(Message.NOTICER_PHONE_NUMBER, "");
         String severAddress = settingInfo.getString(Message.SEVER_ADDRESS, "");
 
@@ -82,7 +82,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 			if(powerThresHold != null && !powerThresHold.equals("")){
 				editor.putInt(Message.POWER_THRESHOLD, Integer.parseInt(powerThresHold));
 			}else {
-				editor.putInt(Message.POWER_THRESHOLD, DefaultSettingInfo.DEFAULT_WARNING_BATTERY_THRESHOLD);
+				editor.putInt(Message.POWER_THRESHOLD, DefaultSettingInfo.DEFAULT_WARNING_POWER_THRESHOLD);
 			}
 			editor.putString(Message.NOTICER_PHONE_NUMBER, noticerPhoneNumberSetting.getText().toString());
 			editor.putString(Message.SEVER_ADDRESS, severAddressSetting.getText().toString());
