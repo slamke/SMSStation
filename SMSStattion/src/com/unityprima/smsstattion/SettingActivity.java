@@ -26,7 +26,8 @@ public class SettingActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         setupViews();
-        initViews();
+        initViews();//test for git plugin!!
+
 
 	}
 	
