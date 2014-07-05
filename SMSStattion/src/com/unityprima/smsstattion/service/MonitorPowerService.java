@@ -40,33 +40,34 @@ public class MonitorPowerService extends Service {
 		// 向系统注册batteryChangedReceiver接收器，本接收器的实现见代码字段处
 		registerReceiver(batteryChangedReceiver, batteryChangedReceiverFilter);
 		// 由于初始化本服务时系统可能没有发出ACTION_BATTERY_CHANGED广播，那么刚才注册的那个接收器将不会在本服务启动时被激活，这种情况下就无法显示当前电量，因此在这里添加一个匿名广播接收器。
-		new BroadcastReceiver() {
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				int level = intent.getIntExtra("level", 0); // 电池电量等级
-				// int scale = intent.getIntExtra("scale", 100); //电池满时百分比
-				int status = intent.getIntExtra("status", 0); // 电池状态
-				Log.e("level:", "" + level);
-				// Log.e("scale:",""+scale);
-				Log.e("status:", "" + status);
-				SharedPreferences sp = getSharedPreferences(
-						Message.PREFERENCE_NAME, MODE_PRIVATE); // 获得Preferences
-				int threshold = sp.getInt(Message.POWER_THRESHOLD,
-						DefaultSettingInfo.DEFAULT_WARNING_POWER_THRESHOLD);
-				String tel = sp.getString(Message.NOTICER_PHONE_NUMBER, "");
-				String sms = "";
-				if (level < threshold
-						&& status != BatteryManager.BATTERY_STATUS_CHARGING) {
-					sms = "您好，短信中转站的手机电池电量已经低于" + level + "%，请及时充电并且检查手机";
-				} else if (level < 5) {
-					sms = Message.POWER_LOW_AND_NOT_CHARGE;
-				}
-				if(tel != null && !tel.equals("")){
-					SmsManager.getDefault().sendTextMessage(tel, null, sms, null,
-							null);
-				}
-			}
-		};
+//		new BroadcastReceiver() {
+//			@Override
+//			public void onReceive(Context context, Intent intent) {
+//				int level = intent.getIntExtra("level", 0); // 电池电量等级
+//				// int scale = intent.getIntExtra("scale", 100); //电池满时百分比
+//				int status = intent.getIntExtra("status", 0); // 电池状态
+//				Log.e("level:", "" + level);
+//				// Log.e("scale:",""+scale);
+//				Log.e("status:", "" + status);
+//				SharedPreferences sp = getSharedPreferences(
+//						Message.PREFERENCE_NAME, MODE_PRIVATE); // 获得Preferences
+//				int threshold = sp.getInt(Message.POWER_THRESHOLD,
+//						DefaultSettingInfo.DEFAULT_WARNING_POWER_THRESHOLD);
+//				String tel = sp.getString(Message.NOTICER_PHONE_NUMBER, "");
+//				String sms = "";
+//				if (level < threshold
+//						&& status != BatteryManager.BATTERY_STATUS_CHARGING) {
+//					sms = "您好，短信中转站的手机电池电量已经低于" + level + "%，请及时充电并且检查手机";
+//				} else if (level < 5) {
+//					sms = Message.POWER_LOW_AND_NOT_CHARGE;
+//				}
+//				Log.e("smsstatus:", "" + tel);
+//				if(tel != null && !tel.equals("")){
+//					SmsManager.getDefault().sendTextMessage(tel, null, sms, null,
+//							null);
+//				}
+//			}
+//		};
 	}
 
 	@Override
@@ -85,14 +86,16 @@ public class MonitorPowerService extends Service {
 			int threshold = sp.getInt(Message.POWER_THRESHOLD,
 					DefaultSettingInfo.DEFAULT_WARNING_POWER_THRESHOLD);
 			String tel = sp.getString(Message.NOTICER_PHONE_NUMBER, "");
-			String sms = "";
+			String sms = null;
 			if (level < threshold
 					&& status != BatteryManager.BATTERY_STATUS_CHARGING) {
 				sms = "您好，短信中转站的手机电池电量已经低于" + level + "%，请及时充电并且检查手机";
 			} else if (level < 5) {
 				sms = Message.POWER_LOW_AND_NOT_CHARGE;
 			}
-			if(tel != null && !tel.equals("")){
+			Log.e("smslevel:", "" + level);
+			Log.e("smstel:", "123" + tel);
+			if(tel != null && !tel.equals("")  && sms!= null){
 				SmsManager.getDefault().sendTextMessage(tel, null, sms, null,
 						null);
 			}

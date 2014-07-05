@@ -87,6 +87,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 			editor.putString(Message.NOTICER_PHONE_NUMBER, noticerPhoneNumberSetting.getText().toString());
 			editor.putString(Message.SEVER_ADDRESS, severAddressSetting.getText().toString());
 			editor.commit();
+			goBack();
 			break;
 		default:
 			break;
