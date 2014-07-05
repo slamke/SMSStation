@@ -1,46 +1,53 @@
 package com.unityprima.smsstattion;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.view.Menu;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Switch;
 import android.widget.TableRow;
 
+import com.unityprima.smsstattion.utils.Message;
+
 public class MainActivity extends Activity implements OnClickListener{
 
-	private Switch switch_1;//接收模块开关
-	private Switch switch_2;//发送模块开关
-	private Switch switch_3;//搬运模块开关
-	private TableRow tableRow_4;//设置模块入口
+	private Switch switchReceive;//接收模块开关
+	private Switch switchSend;//发送模块开关
+	private Switch switchTransfer;//搬运模块开关
+	private TableRow trSetting;//设置模块入口
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
         setupViews();
+        initViews();
     }
 
     protected void setupViews(){  
-    	switch_1 = (Switch)findViewById(R.id.switch_1);
-    	switch_2 = (Switch)findViewById(R.id.switch_2);
-    	switch_3 = (Switch)findViewById(R.id.switch_3);
-    	tableRow_4 = (TableRow)findViewById(R.id.setting);
+    	switchReceive = (Switch)findViewById(R.id.switch_receive);
+    	switchSend = (Switch)findViewById(R.id.switch_send);
+    	switchTransfer = (Switch)findViewById(R.id.switch_transfer);
+    	trSetting = (TableRow)findViewById(R.id.setting);
     	
-    	switch_1.setOnClickListener(this);
-    	switch_2.setOnClickListener(this);
-    	switch_3.setOnClickListener(this);
-    	tableRow_4.setOnClickListener(this);
+    	switchReceive.setOnClickListener(this);
+    	switchSend.setOnClickListener(this);
+    	switchTransfer.setOnClickListener(this);
+    	trSetting.setOnClickListener(this);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+    
+    private void initViews(){
+    	SharedPreferences sp = getSharedPreferences(Message.PREFERENCE_NAME,
+				MODE_PRIVATE); // 获得Preferences
+    	//获取三个模块的开关记录
+    	boolean flagReceive = sp.getBoolean(Message.SWITCH_RECEIVE, true);
+    	boolean flagSend = sp.getBoolean(Message.SWITCH_SEND, true);
+    	boolean flagTransfer = sp.getBoolean(Message.SWITCH_TRANSFER, true);
+    	switchReceive.setChecked(flagReceive);
+    	switchSend.setChecked(flagSend);
+    	switchTransfer.setChecked(flagTransfer);
     }
 
 	@Override
@@ -49,13 +56,27 @@ public class MainActivity extends Activity implements OnClickListener{
 		switch (id) {
 			case R.id.setting:
 				Intent intent = new Intent(this,SettingActivity.class);
-				startActivity(intent);
-			case R.id.switch_1:
+				//设置后，需要接收最新的设置参数实现相关的service重启
+				startActivityForResult(intent, 100);
+			case R.id.switch_receive:
 
-			case R.id.switch_2:
+			case R.id.switch_send:
 				
-			case R.id.switch_3:
+			case R.id.switch_transfer:
 		}
 	}
-    
+	
+	 /** 
+     * 复写onActivityResult，这个方法 
+     */  
+    @Override  
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)  
+    {  
+        //可以根据多个请求代码来作相应的操作  
+        if(100 == resultCode)  
+        {  
+        	//to-do
+        }  
+        super.onActivityResult(requestCode, resultCode, data);  
+    }
 }

@@ -98,12 +98,6 @@ public final class R {
         public static final int white=0x7f040016;
     }
     public static final class dimen {
-        public static final int about_label_size=0x7f05002c;
-        public static final int about_margin_bottom=0x7f05002d;
-        public static final int about_margin_left=0x7f05002e;
-        public static final int about_margin_right=0x7f05002f;
-        public static final int about_margin_top=0x7f05002a;
-        public static final int about_title_size=0x7f05002b;
         public static final int activity_back_btn_size=0x7f050002;
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -115,51 +109,51 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
         public static final int back_btn_margin_right=0x7f050003;
         public static final int base_title_height=0x7f05000c;
-        public static final int body_margin_bottom_right=0x7f050027;
-        public static final int body_margin_left_right=0x7f050024;
-        public static final int body_margin_right_right=0x7f050025;
-        public static final int body_margin_top_right=0x7f050026;
+        public static final int body_margin_bottom_right=0x7f050026;
+        public static final int body_margin_left_right=0x7f050023;
+        public static final int body_margin_right_right=0x7f050024;
+        public static final int body_margin_top_right=0x7f050025;
         public static final int btn_text_size=0x7f05000a;
-        public static final int button_item_height=0x7f050016;
-        public static final int button_item_margin_top=0x7f05001e;
-        public static final int button_next_height=0x7f050017;
-        public static final int button_next_width=0x7f050018;
-        public static final int button_submit_height=0x7f050019;
-        public static final int button_submit_margin_bottom=0x7f05001c;
-        public static final int button_submit_margin_top=0x7f05001b;
-        public static final int button_submit_width=0x7f05001a;
-        public static final int date_widget_height=0x7f050022;
+        public static final int button_item_height=0x7f050015;
+        public static final int button_item_margin_top=0x7f05001d;
+        public static final int button_next_height=0x7f050016;
+        public static final int button_next_width=0x7f050017;
+        public static final int button_submit_height=0x7f050018;
+        public static final int button_submit_margin_bottom=0x7f05001b;
+        public static final int button_submit_margin_top=0x7f05001a;
+        public static final int button_submit_width=0x7f050019;
+        public static final int date_widget_height=0x7f050021;
         public static final int et_padding_left=0x7f05000b;
-        public static final int fault_change_item_text_size=0x7f050015;
-        public static final int footer_label_size=0x7f050034;
-        public static final int item_margin_size=0x7f050021;
-        public static final int label_item_margin_top=0x7f05001d;
-        public static final int label_item_text_size=0x7f050014;
+        public static final int fault_change_item_text_size=0x7f050014;
+        public static final int footer_label_size=0x7f05002d;
+        public static final int item_margin_size=0x7f050020;
+        public static final int label_item_margin_top=0x7f05001c;
+        public static final int label_item_text_size=0x7f050013;
         public static final int login_body_margin_left=0x7f050007;
         public static final int login_body_margin_top=0x7f050008;
-        public static final int login_margin_top=0x7f050033;
-        public static final int logo_height=0x7f050031;
-        public static final int logo_margin_top=0x7f050032;
-        public static final int logo_widht=0x7f050030;
+        public static final int login_margin_top=0x7f05002c;
+        public static final int logo_height=0x7f05002a;
+        public static final int logo_margin_top=0x7f05002b;
+        public static final int logo_widht=0x7f050029;
         public static final int margin_default=0x7f050006;
-        public static final int method_checkbox_margin_left=0x7f050028;
+        public static final int method_checkbox_margin_left=0x7f050027;
         public static final int padding_default=0x7f050004;
-        public static final int page_form_height=0x7f050023;
+        public static final int page_form_height=0x7f050022;
         /** ************************  
          */
-        public static final int row_margin=0x7f050035;
-        public static final int setting_margin_right=0x7f05000e;
-        public static final int spec_padding_left=0x7f050011;
-        public static final int spec_padding_right=0x7f050012;
-        public static final int submit_item_margin_bottom=0x7f050020;
-        public static final int submit_item_margin_top=0x7f05001f;
+        public static final int row_margin=0x7f05002e;
+        public static final int setting_margin_right=0x7f05002f;
+        public static final int spec_padding_left=0x7f050010;
+        public static final int spec_padding_right=0x7f050011;
+        public static final int submit_item_margin_bottom=0x7f05001f;
+        public static final int submit_item_margin_top=0x7f05001e;
         public static final int title_height=0x7f050005;
         public static final int title_margin_left=0x7f05000d;
-        public static final int title_padding_left=0x7f05000f;
-        public static final int title_padding_right=0x7f050010;
-        public static final int title_text_size=0x7f050013;
+        public static final int title_padding_left=0x7f05000e;
+        public static final int title_padding_right=0x7f05000f;
+        public static final int title_text_size=0x7f050012;
         public static final int tv_et_margin=0x7f050009;
-        public static final int viewStub_margin_top=0x7f050029;
+        public static final int viewStub_margin_top=0x7f050028;
     }
     public static final class drawable {
         public static final int advice=0x7f020000;
@@ -960,9 +954,9 @@ public final class R {
         public static final int sos_map_call_rl=0x7f0602f9;
         public static final int sos_map_locate_btn=0x7f0602f8;
         public static final int sos_map_mv=0x7f0602ed;
-        public static final int switch_1=0x7f060311;
-        public static final int switch_2=0x7f060313;
-        public static final int switch_3=0x7f060315;
+        public static final int switch_receive=0x7f060311;
+        public static final int switch_send=0x7f060313;
+        public static final int switch_transfer=0x7f060315;
         public static final int tab_top=0x7f060055;
         public static final int table_top_container=0x7f060171;
         public static final int tag_first=0x7f060004;
@@ -1054,5 +1048,6 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f080001;
+        public static final int style_setting_label=0x7f080002;
     }
 }

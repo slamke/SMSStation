@@ -5,10 +5,10 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 
-    <string name = "messageLoopClock">短信轮询周期</string>
-    <string name = "powerThreshold">电量阈值</string>
-    <string name = "noticerPhoneNumber">提醒人手机号码</string>
-    <string name = "severAddress">服务器地址</string>
+    <string name = "messageLoopClock">短信轮询周期:</string>
+    <string name = "powerThreshold">电量报警阈值:</string>
+    <string name = "noticerPhoneNumber">负责人电话:</string>
+    <string name = "severAddress">服务器地址:</string>
     
     <string name = "setting">设置</string>
     <string name = "percent">%</string>

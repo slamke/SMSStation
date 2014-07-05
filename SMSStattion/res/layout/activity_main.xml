@@ -3,7 +3,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/light_gray_line" >
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="@dimen/base_title_height"
@@ -37,7 +36,6 @@
             android:background="@drawable/bg_corner_round"
             android:gravity="center"
             android:padding="1.0dip" >
-
             <TableRow
                 android:id="@+id/receiving"
                 android:layout_width="fill_parent"
@@ -53,7 +51,7 @@
                     android:textColor="@color/text_black" />
 
                 <Switch
-                    android:id="@+id/switch_1"
+                    android:id="@+id/switch_receive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/row_margin"
@@ -80,7 +78,7 @@
                     android:text="@string/sending"
                     android:textColor="@color/text_black" />
                 <Switch
-                    android:id="@+id/switch_2"
+                    android:id="@+id/switch_send"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/row_margin"
@@ -107,7 +105,7 @@
                     android:text="@string/transporting"
                     android:textColor="@color/text_black" />
                 <Switch
-                    android:id="@+id/switch_3"
+                    android:id="@+id/switch_transfer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/row_margin"

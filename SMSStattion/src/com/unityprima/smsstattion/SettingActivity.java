@@ -1,8 +1,5 @@
 package com.unityprima.smsstattion;
 
-import com.unityprima.smsstattion.utils.Message;
-
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,10 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.unityprima.smsstattion.utils.DefaultSettingInfo;
+import com.unityprima.smsstattion.utils.Message;
+
 public class SettingActivity extends Activity implements OnClickListener{
 
 	private TextView text_save;
-	private Button button_return;
+	private TextView text_return;
 	
 	private EditText messageLoopClockSetting;
 	private EditText powerThresholdSetting;
@@ -26,9 +26,8 @@ public class SettingActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        
         setupViews();
-        initView();
+        initViews();
         
         
 	}
@@ -36,7 +35,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 	//加载控件
 	protected void setupViews(){ 
 		text_save = (TextView)findViewById(R.id.save_setting_button);
-		button_return = (Button)findViewById(R.id.btn_back);
+		text_return = (TextView)findViewById(R.id.btn_back);
 		
 		messageLoopClockSetting = (EditText)findViewById(R.id.messageLoopClockSetting);
 		powerThresholdSetting = (EditText)findViewById(R.id.powerThresholdSetting);
@@ -44,20 +43,20 @@ public class SettingActivity extends Activity implements OnClickListener{
 		severAddressSetting = (EditText)findViewById(R.id.severAddressSetting);
 		
 		text_save.setOnClickListener(this);
-		button_return.setOnClickListener(this);
+		text_return.setOnClickListener(this);
 	}
 	
 	//加载数据
-	protected void initView(){
+	protected void initViews(){
 		SharedPreferences settingInfo = getSharedPreferences(Message.PREFERENCE_NAME, MODE_PRIVATE); 
 		
-        String messageLoopClock = settingInfo.getString(Message.MESSAGE_LOOP_CLOCK, "");  
-        String powerThreshold = settingInfo.getString(Message.POWER_THRESHOLD, "");
+        int messageLoopClock = settingInfo.getInt(Message.MESSAGE_LOOP_CLOCK, DefaultSettingInfo.DEFAULT_LOOP_CYCLE);  
+        int powerThreshold = settingInfo.getInt(Message.POWER_THRESHOLD, DefaultSettingInfo.DEFAULT_WARNING_BATTERY_THRESHOLD);
         String noticerPhoneNumber = settingInfo.getString(Message.NOTICER_PHONE_NUMBER, "");
         String severAddress = settingInfo.getString(Message.SEVER_ADDRESS, "");
 
-        messageLoopClockSetting.setText(messageLoopClock);
-        powerThresholdSetting.setText(powerThreshold);
+        messageLoopClockSetting.setText(""+messageLoopClock);
+        powerThresholdSetting.setText(""+powerThreshold);
         noticerPhoneNumberSetting.setText(noticerPhoneNumber);
         severAddressSetting.setText(severAddress);
 	}
@@ -69,26 +68,33 @@ public class SettingActivity extends Activity implements OnClickListener{
 		case R.id.btn_back:
 			goBack();
 			break;
-
 		case R.id.save_setting_button:
 			SharedPreferences sp = getSharedPreferences(Message.PREFERENCE_NAME, MODE_PRIVATE);
 			SharedPreferences.Editor editor = sp.edit(); // 获得Editor
 			
-			editor.putString(Message.MESSAGE_LOOP_CLOCK, messageLoopClockSetting.getText().toString());
-			editor.putString(Message.POWER_THRESHOLD, powerThresholdSetting.getText().toString());
+			String loopCycle = messageLoopClockSetting.getText().toString();
+			if(loopCycle != null && !loopCycle.equals("")){
+				editor.putInt(Message.MESSAGE_LOOP_CLOCK, Integer.parseInt(loopCycle));
+			}else {
+				editor.putInt(Message.MESSAGE_LOOP_CLOCK, DefaultSettingInfo.DEFAULT_LOOP_CYCLE);
+			}
+			String powerThresHold = powerThresholdSetting.getText().toString();
+			if(powerThresHold != null && !powerThresHold.equals("")){
+				editor.putInt(Message.POWER_THRESHOLD, Integer.parseInt(powerThresHold));
+			}else {
+				editor.putInt(Message.POWER_THRESHOLD, DefaultSettingInfo.DEFAULT_WARNING_BATTERY_THRESHOLD);
+			}
 			editor.putString(Message.NOTICER_PHONE_NUMBER, noticerPhoneNumberSetting.getText().toString());
 			editor.putString(Message.SEVER_ADDRESS, severAddressSetting.getText().toString());
-		
+			editor.commit();
 			break;
-			
 		default:
 			break;
 		}
-		
-		
 	}
 
 	private void goBack() {
+		setResult(100);
 		finish();
 	}
 }

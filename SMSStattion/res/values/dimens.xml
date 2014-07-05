@@ -15,7 +15,7 @@
     <dimen name="et_padding_left">10.0dip</dimen>
     <dimen name="base_title_height">46.0dip</dimen>
     <dimen name="title_margin_left">10.0dip</dimen>
-    <dimen name="setting_margin_right">6.0dip</dimen>
+    
     <dimen name="title_padding_left">60.0dip</dimen>
     <dimen name="title_padding_right">60.0dip</dimen>
     <dimen name="spec_padding_left">10.0dip</dimen>
@@ -43,13 +43,7 @@
     <dimen name="body_margin_bottom_right">2.0dip</dimen>
 	<dimen name="method_checkbox_margin_left">20.0dip</dimen>
 	<dimen name="viewStub_margin_top">100.0dip</dimen>
-	
-	<dimen name="about_margin_top">20.0dip</dimen>
-	<dimen name="about_title_size">20sp</dimen>
-	<dimen name="about_label_size">15sp</dimen>
-	<dimen name="about_margin_bottom">20.0dip</dimen>
-	<dimen name="about_margin_left">5.0dip</dimen>
-    <dimen name="about_margin_right">5.0dip</dimen>
+
     
     	<dimen name="logo_widht">120.0dip</dimen>
     <dimen name="logo_height">80.0dip</dimen>
@@ -61,4 +55,5 @@
     
     <!--************************  -->
     <dimen name="row_margin">100.0dip</dimen>
+    <dimen name="setting_margin_right">6.0dip</dimen>
 </resources>
