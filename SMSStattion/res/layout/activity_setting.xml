@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/light_gray_line" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/base_title_height"
+        android:background="@color/head_color" >
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="@dimen/activity_back_btn_size"
+            android:layout_height="@dimen/activity_back_btn_size"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/title_margin_left"
+            android:layout_marginRight="@dimen/back_btn_margin_right"
+            android:background="@drawable/btn_back"
+            android:gravity="center"
+            android:paddingLeft="7.0dip" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="1dip"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="2dip"
+            android:layout_toRightOf="@id/btn_back"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@id/base_title_text_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingLeft="@dimen/title_padding_left"
+            android:paddingRight="@dimen/title_padding_right"
+            android:singleLine="true"
+            android:text="@string/setting"
+            android:textColor="@color/btn_text_color_white"
+            android:textSize="@dimen/title_text_size"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/body_margin_left_right"
+        android:layout_marginRight="@dimen/body_margin_left_right"
+        android:layout_marginTop="@dimen/title_height" >
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default"
+            android:background="@drawable/bg_corner_round"
+            android:gravity="center"
+            android:padding="1.0dip" >
+
+            <TableRow
+                android:id="@+id/messageLoopClock"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/padding_default" >
+
+                <!--
+                         <ImageView
+                        android:layout_width="32dip"
+                        android:layout_height="32dip"
+                        android:src="@drawable/setting_email" />
+                -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:text="@string/messageLoopClock"
+                    android:textColor="@color/text_black" />
+
+                <!--
+                         <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:drawableRight="@drawable/icon_button_arrow_01" />
+                -->
+
+                <EditText
+                    android:id="@+id/messageLoopClockSetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number" >
+
+                    <requestFocus />
+                </EditText>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:text="@string/minutes"
+                    android:textColor="@color/text_black" />
+            </TableRow>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:background="@drawable/line_01_w452" />
+
+            <TableRow
+                android:id="@+id/powerThreshold"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/padding_default" >
+
+                <!--
+                         <ImageView
+                        android:layout_width="32dip"
+                        android:layout_height="32dip"
+                        android:src="@drawable/setting_phone" />
+                -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:text="@string/powerThreshold"
+                    android:textColor="@color/text_black" />
+
+                <EditText
+                    android:id="@+id/powerThresholdSetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number" >
+
+                    <requestFocus />
+                </EditText>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:text="@string/percent"
+                    android:textColor="@color/text_black" />
+                <!--
+                         <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:drawableRight="@drawable/icon_button_arrow_01" />
+                -->
+            </TableRow>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:background="@drawable/line_01_w452" />
+
+            <TableRow
+                android:id="@+id/noticerPhoneNumber"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/padding_default" >
+
+                <!--
+                         <ImageView
+                        android:layout_width="32dip"
+                        android:layout_height="32dip"
+                        android:src="@drawable/setting_server" />
+                -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:text="@string/noticerPhoneNumber"
+                    android:textColor="@color/text_black" />
+
+                <EditText
+                    android:id="@+id/noticerPhoneNumberSetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="phone" >
+
+                    <requestFocus />
+                </EditText>
+                <!--
+                         <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:drawableRight="@drawable/icon_button_arrow_01" />
+                -->
+            </TableRow>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:background="@drawable/line_01_w452" />
+
+            <TableRow
+                android:id="@+id/severAddress"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/padding_default" >
+
+                <!--
+                         <ImageView
+                        android:layout_width="32dip"
+                        android:layout_height="32dip"
+                        android:src="@drawable/setting_about" />
+                -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_default"
+                    android:text="@string/severAddress"
+                    android:textColor="@color/text_black" />
+
+                <EditText
+                    android:id="@+id/severAddressSetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text" >
+
+                    <requestFocus />
+                </EditText>
+                <!--
+                         <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:drawableRight="@drawable/icon_button_arrow_01" />
+                -->
+            </TableRow>
+
+            <!--
+                     <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip"
+                    android:background="@drawable/line_01_w452" />
+            -->
+
+        </TableLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/save_setting_rl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeLayout1"
+        android:layout_marginTop="@dimen/tv_et_margin"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/save_setting_button"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/btn_rectangle_selector"
+            android:gravity="center"
+            android:text="@string/save_setting"
+            android:textColor="@color/btn_text_color_black"
+            android:textSize="@dimen/btn_text_size" />
+    </RelativeLayout>
+
+</RelativeLayout>
