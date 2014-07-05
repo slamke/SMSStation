@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Switch;
 import android.widget.TableRow;
 
+import com.unityprima.smsstattion.service.MonitorPowerService;
 import com.unityprima.smsstattion.utils.Message;
 
 public class MainActivity extends Activity implements OnClickListener{
@@ -24,8 +25,14 @@ public class MainActivity extends Activity implements OnClickListener{
         setContentView(R.layout.activity_main);
         setupViews();
         initViews();
+        startService();
     }
 
+    private void startService(){
+    	Intent moniterPowerService = new Intent(this,MonitorPowerService.class);
+        startService(moniterPowerService);
+    }
+    
     protected void setupViews(){  
     	switchReceive = (Switch)findViewById(R.id.switch_receive);
     	switchSend = (Switch)findViewById(R.id.switch_send);
