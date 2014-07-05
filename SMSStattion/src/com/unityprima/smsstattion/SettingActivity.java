@@ -28,7 +28,7 @@ public class SettingActivity extends Activity implements OnClickListener{
         setupViews();
         initViews();//test for git plugin
 
-        //test for git plugin//test for git plugin//test for git plugin
+        /* test for git plugin//test for git plugin//test for git plugin */
 
 
 	}
