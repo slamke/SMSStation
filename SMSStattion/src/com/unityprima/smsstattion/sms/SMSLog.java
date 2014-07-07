@@ -9,10 +9,10 @@ public class SMSLog extends Model {
 	@Column(name = "smsid")
 	public String time;
 	
-	@Column(name = "smsid")
+	@Column(name = "content")
 	public String content;
 	
-	@Column(name = "smsid")
+	@Column(name = "logType")
 	public String logType; 
 	
 	public static final String TYPE_LOAD = "load";

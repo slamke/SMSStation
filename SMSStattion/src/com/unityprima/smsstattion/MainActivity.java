@@ -44,7 +44,15 @@ public class MainActivity extends Activity implements OnClickListener{
         }
 
     }
-
+    /**************************************************/
+    protected void onPause() { 
+        super.onPause();
+    }
+  
+    protected void onResume() {
+        super.onResume();  
+    }  
+    
     private void startService(){
     	Intent moniterPowerService = new Intent(this,MonitorPowerService.class);
         startService(moniterPowerService);
