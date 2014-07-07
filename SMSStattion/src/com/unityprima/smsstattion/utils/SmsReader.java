@@ -33,15 +33,15 @@ public class SmsReader {
 
         while(cursor.moveToNext()){
             smsInfo = new SMSMO();
-            Long id = cursor.getLong(0);
+
             String sms = cursor.getString(1);
             String times_test = cursor.getString(2);
             System.out.println(times_test);
-            //Date times = cursor.getString(2);
+//            Date times = cursor.getString(2);
             String mbno = cursor.getString(3);
             String sendSN = cursor.getString(4);
 
-            smsInfo.setId(id);
+//            smsInfo.setId(id);
             smsInfo.setSms(sms);
 //            smsInfo.setTimes(times);
             smsInfo.setMbno(mbno);
