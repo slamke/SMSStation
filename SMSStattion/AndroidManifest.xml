@@ -44,8 +44,24 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>  
         </receiver>
+        <receiver android:name="com.unityprima.smsstattion.receiver.SMSStationReceiver" android:exported="false">  
+            <intent-filter>  
+                <action android:name="UNITYPRIMA_SMS_ACTION" android:exported="false"/>
+            </intent-filter>  
+        </receiver>
+        <receiver android:name="com.unityprima.smsstattion.receiver.SMSReceiver" android:exported="false">  
+            <intent-filter>  
+                <action android:name="SMS_SEND_ACTIOIN" android:exported="false"/>
+                <action android:name="SMS_DELIVERED_ACTION_A" android:exported="false"/>
+            </intent-filter>  
+        </receiver>
         <service android:name="com.unityprima.smsstattion.service.MonitorPowerService"  android:enabled="true"/>
-        <service android:name=".SMSService"/>
+        <service android:name="com.unityprima.smsstattion.service.SMSStationService" android:enabled="true"/>
+        <service android:name="com.unityprima.smsstattion.service.SMSIntentService" android:exported="false">
+            <intent-filter >
+                <action android:name="UNITYPRIMA_SMS_INTENT_SERVICE" android:exported="false"/>
+            </intent-filter>
+        </service>
         <meta-data android:name="AA_DB_NAME" android:value="unityprima_sms.db" />
         <meta-data android:name="AA_DB_VERSION" android:value="1" />
     </application>

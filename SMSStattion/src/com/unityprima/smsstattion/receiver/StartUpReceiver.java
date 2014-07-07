@@ -22,6 +22,10 @@ public class StartUpReceiver extends BroadcastReceiver {
 	        Intent moniterPowerService = new Intent(arg0,MonitorPowerService.class);
 	        moniterPowerService.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	        arg0.startService(moniterPowerService);
+	        ///启动后台周期执行的service
+	        Intent operationService = new Intent(arg0,SMSStationReceiver.class);
+	        operationService.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	        arg0.startService(operationService);
 		}
 		
 	}
