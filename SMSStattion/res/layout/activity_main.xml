@@ -23,6 +23,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/main_table"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/body_margin_left_right"
@@ -140,5 +141,13 @@
             </TableRow>
         </TableLayout>
     </RelativeLayout>
+    			<TextView
+       				android:id="@+id/txt_tip"
+        			style="@style/style_tip_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+					android:layout_alignParentBottom="true"
+					android:textIsSelectable="false"
+                    />
 
 </RelativeLayout>

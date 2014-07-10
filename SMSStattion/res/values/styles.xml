@@ -21,4 +21,13 @@
         <item name="android:gravity">right</item>
         <item name="android:layout_marginRight">@dimen/setting_margin_right</item>
     </style>
+    <style name="style_tip_label">
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:gravity">left</item>
+        <item name="android:layout_marginRight">@dimen/tip_margin_right</item>
+        <item name="android:layout_marginLeft">@dimen/tip_margin_left</item>
+        <item name="android:layout_marginBottom">@dimen/tip_margin_bottom</item>
+        <item name="android:textSize">18sp</item>
+        
+    </style>
 </resources>
