@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import com.unityprima.smsstattion.MainActivity;
 import com.unityprima.smsstattion.service.MonitorPowerService;
+import com.unityprima.smsstattion.service.SMSStationService;
 
 
 public class StartUpReceiver extends BroadcastReceiver {
@@ -23,7 +24,7 @@ public class StartUpReceiver extends BroadcastReceiver {
 	        moniterPowerService.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	        arg0.startService(moniterPowerService);
 	        ///启动后台周期执行的service
-	        Intent operationService = new Intent(arg0,SMSStationReceiver.class);
+	        Intent operationService = new Intent(arg0,SMSStationService.class);
 	        operationService.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	        arg0.startService(operationService);
 		}

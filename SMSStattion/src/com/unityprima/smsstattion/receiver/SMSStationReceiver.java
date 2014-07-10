@@ -4,6 +4,7 @@ import static com.unityprima.smsstattion.utils.Constants.OPERATION_RECEIVE;
 import static com.unityprima.smsstattion.utils.Constants.OPERATION_SEND;
 import static com.unityprima.smsstattion.utils.Constants.OPERATION_TRANSFER;
 import static com.unityprima.smsstattion.utils.Constants.OPERATION_TYPE;
+import static com.unityprima.smsstattion.utils.Constants.OPERATION_FEED_BACK;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +28,14 @@ public class SMSStationReceiver extends BroadcastReceiver{
     	if (severAddress == null || severAddress.equals("")) {
 			return;
 		}
+    	//短信回执模块先执行，防止成功发送的短信再次发送。。。
+    	{
+	    	Intent startServiceIntent = new Intent(Constants.SMS_INTENT_SERVICE);  
+	        Bundle bundle = new Bundle();
+	        bundle.putString(OPERATION_TYPE, OPERATION_FEED_BACK);  
+	        startServiceIntent.putExtras(bundle);  
+	        arg0.startService(startServiceIntent);
+    	}
     	 //可以启动多次，每启动一次，就会新建一个work thread，但IntentService的实例始终只有一个  
     	if (flagSend) {
     		Intent startServiceIntent = new Intent(Constants.SMS_INTENT_SERVICE);  
