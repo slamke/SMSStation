@@ -58,11 +58,22 @@ public class MonitorPowerService extends Service {
 					DefaultSettingInfo.DEFAULT_WARNING_POWER_THRESHOLD);
 			String tel = sp.getString(Message.NOTICER_PHONE_NUMBER, "");
 			String sms = null;
+			
+			boolean isNoticed = sp.getBoolean(Message.POWER_LOW_NOTICE, false);
+			
+			//电量小于阈值并且没用充电时，进行报警，并且设置标志位，放置多次报警
 			if (level < threshold
-					&& status != BatteryManager.BATTERY_STATUS_CHARGING) {
+					&& status != BatteryManager.BATTERY_STATUS_CHARGING && !isNoticed) {
 				sms = "您好，短信中转站的手机电池电量已经低于" + level + "%，请及时充电并且检查手机";
+				SharedPreferences.Editor editor = sp.edit(); // 获得Editor
+				editor.putBoolean(Message.POWER_LOW_NOTICE, true);
+				editor.commit();
 			} else if (level < 5) {
 				sms = Message.POWER_LOW_AND_NOT_CHARGE;
+			}else if (level > threshold) {  //电量上升后，重置标志位，进行下一次低电量报警
+				SharedPreferences.Editor editor = sp.edit(); // 获得Editor
+				editor.putBoolean(Message.POWER_LOW_NOTICE, false);
+				editor.commit();
 			}
 			Log.e("smslevel:", "" + level);
 			Log.e("smstel:", "" + tel);
