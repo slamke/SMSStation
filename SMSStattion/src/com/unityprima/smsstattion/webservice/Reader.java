@@ -9,8 +9,7 @@ public class Reader {
 	private Reader ()
 	{}
  	/**
-	 * ��������ֵ
-	 * 
+	 *
 	 * @param instream
 	 * @return
 	 */
