@@ -32,7 +32,7 @@ public class SMSModel extends Model{
 	public String sms; 
 	
 	@Column(name="status")
-	public String status;  //0-->已反馈 1->未反馈
+	public String status;  //yes-->已反馈no->未反馈
 	
 	/**
 	 * SubmitTime	发送时间	Datetime	

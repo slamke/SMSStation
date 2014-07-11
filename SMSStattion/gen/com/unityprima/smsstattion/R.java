@@ -147,6 +147,9 @@ public final class R {
         public static final int spec_padding_right=0x7f050011;
         public static final int submit_item_margin_bottom=0x7f05001f;
         public static final int submit_item_margin_top=0x7f05001e;
+        public static final int tip_margin_bottom=0x7f050032;
+        public static final int tip_margin_left=0x7f050031;
+        public static final int tip_margin_right=0x7f050030;
         public static final int title_height=0x7f050005;
         public static final int title_margin_left=0x7f05000d;
         public static final int title_padding_left=0x7f05000e;
@@ -197,7 +200,7 @@ public final class R {
         public static final int about_carcare_update_tr=0x7f06000b;
         public static final int about_carcare_website_tr=0x7f060009;
         public static final int about_carcare_weibo_tr=0x7f060007;
-        public static final int action_settings=0x7f060324;
+        public static final int action_settings=0x7f060326;
         public static final int activity_address_tv=0x7f060035;
         public static final int activity_address_value_tv=0x7f060036;
         public static final int activity_apply_agree_ll=0x7f06001a;
@@ -288,7 +291,7 @@ public final class R {
         public static final int body=0x7f060040;
         public static final int bottom_ll=0x7f0600fe;
         public static final int bottom_shade=0x7f06009b;
-        public static final int btn_back=0x7f060317;
+        public static final int btn_back=0x7f060319;
         public static final int calendar_root_ll=0x7f06006b;
         public static final int calendar_view=0x7f06006f;
         public static final int calendar_view_month_tv=0x7f06006d;
@@ -600,7 +603,7 @@ public final class R {
         public static final int left_manager_cars_list_lv=0x7f0601ae;
         public static final int left_menu_view_sv=0x7f0601af;
         public static final int leftmenu=0x7f0601c2;
-        public static final int line=0x7f060318;
+        public static final int line=0x7f06031a;
         public static final int line1=0x7f0600f9;
         public static final int lnktools_bar_ll=0x7f0602c8;
         public static final int lnktools_gv=0x7f0602d5;
@@ -636,6 +639,7 @@ public final class R {
         public static final int login_user_password_clear_ib=0x7f0601db;
         public static final int login_user_password_et=0x7f0601d9;
         public static final int login_user_password_name_iv=0x7f0601da;
+        public static final int main_table=0x7f060310;
         public static final int manager_cars_detail_delete_bt=0x7f0601e9;
         public static final int manager_cars_detail_engine_tv=0x7f0601e5;
         public static final int manager_cars_detail_image=0x7f0601e2;
@@ -644,8 +648,8 @@ public final class R {
         public static final int manager_cars_detail_set_default_ib=0x7f0601e7;
         public static final int manager_cars_detail_type_tv=0x7f0601e3;
         public static final int manager_cars_detail_what_default_ib=0x7f0601e8;
-        public static final int messageLoopClock=0x7f06031a;
-        public static final int messageLoopClockSetting=0x7f06031b;
+        public static final int messageLoopClock=0x7f06031c;
+        public static final int messageLoopClockSetting=0x7f06031d;
         public static final int message_center_bottom=0x7f0600d2;
         public static final int message_center_detail_bottom_ll=0x7f0601f1;
         public static final int message_center_detail_content_wv=0x7f0601f2;
@@ -714,8 +718,8 @@ public final class R {
         public static final int news_weather_temp_desc_tv=0x7f060203;
         public static final int news_weather_temp_ll=0x7f060201;
         public static final int news_weather_temp_tv=0x7f060202;
-        public static final int noticerPhoneNumber=0x7f06031e;
-        public static final int noticerPhoneNumberSetting=0x7f06031f;
+        public static final int noticerPhoneNumber=0x7f060320;
+        public static final int noticerPhoneNumberSetting=0x7f060321;
         public static final int online_container_ll=0x7f06021e;
         public static final int online_reservation_container_rl=0x7f060229;
         public static final int online_reservation_detail_form_cancel_btn=0x7f06024c;
@@ -809,9 +813,9 @@ public final class R {
         public static final int popwin_three_btn_button2_bt=0x7f06028a;
         public static final int popwin_three_btn_button3_bt=0x7f06028b;
         public static final int popwin_three_btn_cancel_bt=0x7f06028c;
-        public static final int powerThreshold=0x7f06031c;
-        public static final int powerThresholdSetting=0x7f06031d;
-        public static final int receiving=0x7f060310;
+        public static final int powerThreshold=0x7f06031e;
+        public static final int powerThresholdSetting=0x7f06031f;
+        public static final int receiving=0x7f060311;
         public static final int register_agree_tv=0x7f060292;
         public static final int register_already_back_btn=0x7f060296;
         public static final int register_already_icon=0x7f060295;
@@ -833,7 +837,7 @@ public final class R {
         public static final int register_validate_finish_btn_tv=0x7f0602a0;
         public static final int register_validate_phone_num_tv=0x7f06029b;
         public static final int register_validate_time_tv=0x7f06029c;
-        public static final int relativeLayout1=0x7f060319;
+        public static final int relativeLayout1=0x7f06031b;
         public static final int reservation_car_num_tv=0x7f060250;
         public static final int reservation_car_series_tv=0x7f06024f;
         public static final int reservation_client_name_et=0x7f06024e;
@@ -872,17 +876,17 @@ public final class R {
         public static final int row_tools_item_3_ll=0x7f0602ae;
         public static final int row_tools_item_3_new_iv=0x7f0602b1;
         public static final int row_tools_item_3_tv=0x7f0602b0;
-        public static final int save_setting_button=0x7f060323;
-        public static final int save_setting_rl=0x7f060322;
+        public static final int save_setting_button=0x7f060325;
+        public static final int save_setting_rl=0x7f060324;
         public static final int select_car_add_btn=0x7f0602b3;
         public static final int select_car_body_lv=0x7f0602b2;
         public static final int select_car_confirm_btn=0x7f0602b4;
         public static final int select_car_item_num_tv=0x7f0602b6;
         public static final int select_car_item_rl=0x7f0602b5;
         public static final int select_car_item_selected_tv=0x7f0602b7;
-        public static final int sending=0x7f060312;
+        public static final int sending=0x7f060313;
         public static final int service_rule_content_wv=0x7f0602b8;
-        public static final int setting=0x7f060316;
+        public static final int setting=0x7f060317;
         public static final int setting_about_row_tr=0x7f0601c0;
         public static final int setting_clear_row_tr=0x7f0601c1;
         public static final int setting_coupons_row_line_v=0x7f0601b7;
@@ -928,8 +932,8 @@ public final class R {
         public static final int setting_user_info_motify_sex_tv=0x7f0601ce;
         public static final int setting_user_name_tv=0x7f0601b2;
         public static final int setting_user_row_tr=0x7f0601b0;
-        public static final int severAddress=0x7f060320;
-        public static final int severAddressSetting=0x7f060321;
+        public static final int severAddress=0x7f060322;
+        public static final int severAddressSetting=0x7f060323;
         public static final int shared_to_friends_content_et=0x7f0602e2;
         public static final int shared_to_friends_info_base_tv=0x7f0602e3;
         public static final int shared_to_friends_info_tv=0x7f0602e4;
@@ -954,9 +958,9 @@ public final class R {
         public static final int sos_map_call_rl=0x7f0602f9;
         public static final int sos_map_locate_btn=0x7f0602f8;
         public static final int sos_map_mv=0x7f0602ed;
-        public static final int switch_receive=0x7f060311;
-        public static final int switch_send=0x7f060313;
-        public static final int switch_transfer=0x7f060315;
+        public static final int switch_receive=0x7f060312;
+        public static final int switch_send=0x7f060314;
+        public static final int switch_transfer=0x7f060316;
         public static final int tab_top=0x7f060055;
         public static final int table_top_container=0x7f060171;
         public static final int tag_first=0x7f060004;
@@ -971,8 +975,9 @@ public final class R {
         public static final int tools_activity_table_tl=0x7f0602fc;
         public static final int top=0x7f0601c3;
         public static final int top_rl=0x7f060285;
-        public static final int transporting=0x7f060314;
+        public static final int transporting=0x7f060315;
         public static final int tvUserName=0x7f06010e;
+        public static final int txt_tip=0x7f060318;
         public static final int wheel_city_choose_city_wv=0x7f0602fe;
         public static final int wheel_city_choose_ok_bt=0x7f060300;
         public static final int wheel_city_choose_province_wv=0x7f0602fd;
@@ -1049,5 +1054,6 @@ public final class R {
          */
         public static final int AppTheme=0x7f080001;
         public static final int style_setting_label=0x7f080002;
+        public static final int style_tip_label=0x7f080003;
     }
 }

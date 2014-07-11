@@ -8,6 +8,8 @@ public class Constants {
 	
 	public static final String SMS_INTENT_SERVICE = "UNITYPRIMA_SMS_INTENT_SERVICE";
 	
+	public static final String OPERATION_FEED_BACK = "FEED_BACK";
+	
 	public static final String OPERATION_SEND = "SEND";
 	
 	public static final String OPERATION_RECEIVE = "RECEIVE";
