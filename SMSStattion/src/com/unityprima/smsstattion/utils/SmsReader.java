@@ -6,8 +6,10 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.telephony.TelephonyManager;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,33 +23,43 @@ public class SmsReader {
         this.context = _context;
     }
 
+    private TelephonyManager tm;
 
     public List<SMSMO> getSmsInfo(){
         List<SMSMO> infos = new ArrayList<SMSMO>();
 
         ContentResolver resolver = context.getContentResolver();
         Uri uri = Uri.parse("content://sms/");
-        Cursor cursor = resolver.query(uri, new String[] {"_id", "sms", "times", "mbno", "sendSN"}, null, null, " date desc ");
+        Cursor cursor = resolver.query(uri, new String[] {"_id", "address",
+                "person", "date", "type", "body"}, null, null, " date desc ");
 
         SMSMO smsInfo;
 
+        tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+        String currentSim = tm.getLine1Number();
+
         while(cursor.moveToNext()){
-            smsInfo = new SMSMO();
+            // ALL = 0; INBOX = 1; SENT = 2; DRAFT = 3; OUTBOX = 4; FAILED = 5;
+            // QUEUED = 6;
+            //条件：1、接收的短信；
+            if(cursor.getInt(4) == 1){
+                smsInfo = new SMSMO();
+                Long id = cursor.getLong(0);
+                String mbno = cursor.getString(1);
 
-            String sms = cursor.getString(1);
-            String times_test = cursor.getString(2);
-            System.out.println(times_test);
-//            Date times = cursor.getString(2);
-            String mbno = cursor.getString(3);
-            String sendSN = cursor.getString(4);
+                String times_ms= cursor.getString(3);
+                Date times = new Date(Long.parseLong(times_ms));
 
-//            smsInfo.setId(id);
-            smsInfo.setSms(sms);
-//            smsInfo.setTimes(times);
-            smsInfo.setMbno(mbno);
-            smsInfo.setSendSN(sendSN);
+                String sms = cursor.getString(5);
 
-            infos.add(smsInfo);
+                smsInfo.setId(id);
+                smsInfo.setSms(sms);
+                smsInfo.setTimes(times);
+                smsInfo.setMbno(mbno);
+                smsInfo.setSendSN(currentSim);
+
+                infos.add(smsInfo);
+            }
         }
 
         cursor.close();

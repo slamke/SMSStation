@@ -4,13 +4,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Switch;
 import android.widget.TableRow;
 
+import com.unityprima.smsstattion.entity.SMSMO;
 import com.unityprima.smsstattion.service.MonitorPowerService;
 import com.unityprima.smsstattion.utils.Message;
+import com.unityprima.smsstattion.utils.SmsReader;
+
+import java.util.List;
 
 public class MainActivity extends Activity implements OnClickListener{
 
@@ -18,7 +23,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	private Switch switchSend;//发送模块开关
 	private Switch switchTransfer;//搬运模块开关
 	private TableRow trSetting;//设置模块入口
-	
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +31,18 @@ public class MainActivity extends Activity implements OnClickListener{
         setupViews();
         initViews();
         startService();
+
+        SmsReader smsReader = new SmsReader(this);
+        List<SMSMO> smsInfos = smsReader.getSmsInfo();
+        int acc = 0;
+        for(SMSMO temp:smsInfos){
+            acc++;
+            Log.i(acc + ": 內容", temp.getSms());
+            Log.i(acc + ": 接收手机号", temp.getMbno());
+            Log.i(acc + ": 发送手机号", temp.getSendSN());
+
+        }
+
     }
     /**************************************************/
     protected void onPause() { 
