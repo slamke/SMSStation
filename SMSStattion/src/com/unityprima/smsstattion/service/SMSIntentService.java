@@ -16,9 +16,11 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.IBinder;
 import android.telephony.SmsManager;
+import android.util.Log;
 
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
+import com.unityprima.smsstattion.entity.SMSMO;
 import com.unityprima.smsstattion.entity.SMSSent;
 import com.unityprima.smsstattion.entity.SMSWSend;
 import com.unityprima.smsstattion.sms.SMSLog;
@@ -26,9 +28,13 @@ import com.unityprima.smsstattion.sms.SMSModel;
 import com.unityprima.smsstattion.utils.Constants;
 import com.unityprima.smsstattion.utils.DateParse;
 import com.unityprima.smsstattion.utils.Message;
+import com.unityprima.smsstattion.utils.SmsDeleter;
+import com.unityprima.smsstattion.utils.SmsReader;
 import com.unityprima.smsstattion.webservice.FeedBackWebService;
 import com.unityprima.smsstattion.webservice.LoaderWebService;
 import com.unityprima.smsstattion.webservice.TransferWebService;
+import com.unityprima.smsstattion.webservice.UploadWebService;
+
 public class SMSIntentService extends IntentService {
 
 	public SMSIntentService() {
@@ -102,7 +108,31 @@ public class SMSIntentService extends IntentService {
 				log.save();
 			}
 		}else if (action.equals(Constants.OPERATION_RECEIVE)) {
-			
+            List<SMSMO> smsList = new SmsReader(this).getSmsInfo();
+            UploadWebService uploadWebService = new UploadWebService(this);
+            String feedBackFromSever = null;
+            if(smsList == null){
+
+            }else{
+                feedBackFromSever = uploadWebService.sendSMSMOList(smsList);
+                if (feedBackFromSever == Message.SUCCESS){
+                    List<Long> id_Upload = new ArrayList<Long>();
+                    for(SMSMO temp : smsList){
+                        id_Upload.add(temp.getId());
+                    }
+
+                    if(id_Upload != null){
+                        new SmsDeleter(this).smsDelete(id_Upload);
+                    }
+                }else if(feedBackFromSever == Message.ERROR){
+
+                }else if(feedBackFromSever == Message.NETWORK_FAIL){
+
+                }
+            }
+
+
+
 		} else if (action.equals(Constants.OPERATION_SEND)) {
 			LoaderWebService loaderWebService = new LoaderWebService(this);
 	    	List<SMSWSend> list = loaderWebService.getSMSSendList();

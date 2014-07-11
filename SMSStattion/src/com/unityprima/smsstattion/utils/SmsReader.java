@@ -11,6 +11,7 @@ import android.telephony.TelephonyManager;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.sql.Timestamp;
 
 /**
  * Created by Bobby on 2014/7/7.
@@ -49,12 +50,12 @@ public class SmsReader {
 
                 String times_ms= cursor.getString(3);
                 Date times = new Date(Long.parseLong(times_ms));
-
+                Timestamp ts = new Timestamp(times.getTime());
                 String sms = cursor.getString(5);
 
                 smsInfo.setId(id);
                 smsInfo.setSms(sms);
-                smsInfo.setTimes(times);
+                smsInfo.setTimes(ts);
                 smsInfo.setMbno(mbno);
                 smsInfo.setSendSN(currentSim);
 
