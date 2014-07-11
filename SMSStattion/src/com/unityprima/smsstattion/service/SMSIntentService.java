@@ -6,6 +6,7 @@ import static com.unityprima.smsstattion.sms.SMSModel.NOT_STATUS;
 import static com.unityprima.smsstattion.sms.SMSModel.YES_STATUS;
 import static com.unityprima.smsstattion.utils.Constants.SMS_SEND_ID;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -80,9 +81,9 @@ public class SMSIntentService extends IntentService {
 				DateParse parse = new DateParse();
 				sent.setWsendId(model.smsid);
 				sent.setReveivedStatus(model.reveivedStatus);
-				sent.setReveivedTime(parse.string2Date(model.reveivedTime));
-				sent.setSubmitTime(parse.string2Date(model.submitTime));
-				sent.setSubmitRespTime(parse.string2Date(model.submitRespTime));
+				sent.setReveivedTime(new Timestamp(parse.string2Date(model.reveivedTime).getTime()));
+				sent.setSubmitTime(new Timestamp(parse.string2Date(model.submitTime).getTime()));
+				sent.setSubmitRespTime(new Timestamp(parse.string2Date(model.submitRespTime).getTime()));
 				sent.setSubmitStatus(model.submitStatus);
 				sentList.add(sent);
 			}
@@ -92,6 +93,13 @@ public class SMSIntentService extends IntentService {
 				for (SMSModel model : list) {
 					new Delete().from(SMSModel.class).where("smsid = ?", model.smsid).execute();
 				}
+			}else {
+				//记录错误log
+				SMSLog log = new SMSLog();
+				log.content = Constants.OPERATION_FEED_BACK+" "+ res;
+				log.logType = SMSLog.TYPE_SEND;
+				log.time = new DateParse().date2String(new Date());
+				log.save();
 			}
 		}else if (action.equals(Constants.OPERATION_RECEIVE)) {
 			
