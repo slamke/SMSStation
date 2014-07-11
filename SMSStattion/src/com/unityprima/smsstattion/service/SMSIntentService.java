@@ -142,28 +142,26 @@ public class SMSIntentService extends IntentService {
             List<SMSMO> smsList = new SmsReader(this).getSmsInfo();
             UploadWebService uploadWebService = new UploadWebService(this);
             String feedBackFromSever = null;
-            if(smsList == null){
-
-            }else{
+            if(smsList != null){
                 feedBackFromSever = uploadWebService.sendSMSMOList(smsList);
-                if (feedBackFromSever == Message.SUCCESS){
+                //Log.e("feedBackFromSever:", feedBackFromSever);
+                if (feedBackFromSever.equals(Message.SUCCESS)){
                     List<Long> id_Upload = new ArrayList<Long>();
                     for(SMSMO temp : smsList){
                         id_Upload.add(temp.getId());
                     }
-
                     if(id_Upload != null){
                         new SmsDeleter(this).smsDelete(id_Upload);
                     }
-                }else if(feedBackFromSever == Message.ERROR){
-
-                }else if(feedBackFromSever == Message.NETWORK_FAIL){
-
+                }else{
+                	//记录错误log
+    				SMSLog log = new SMSLog();
+    				log.content = Constants.OPERATION_RECEIVE+" "+ feedBackFromSever;
+    				log.logType = SMSLog.TYPE_LOAD;
+    				log.time = new DateParse().date2String(new Date());
+    				log.save();
                 }
             }
-
-
-
 		} else if (action.equals(Constants.OPERATION_SEND)) {
 			LoaderWebService loaderWebService = new LoaderWebService(this);
 	    	List<SMSWSend> list = loaderWebService.getSMSSendList();
@@ -177,19 +175,18 @@ public class SMSIntentService extends IntentService {
 				for (SMSWSend smswSend : list) {
 					if (smswSend.getSms() != null && !smswSend.getSms().equals("")) {
 						SMSModel temp = new Select().from(SMSModel.class).where("smsid = ?", smswSend.getId()).executeSingle();
-						//该短信已经成功发送
+						//该短信已经发送
 						if (temp != null) {
 							continue;
 						}
-						
 						Intent sendIntent = new Intent(ACTION_SMS_SEND);
 				        sendIntent.putExtra(SMS_SEND_ID, smswSend.getId());
-				        PendingIntent sendPI = PendingIntent.getBroadcast(this, 0, 
+				        PendingIntent sendPI = PendingIntent.getBroadcast(this, (int)smswSend.getId(), 
 				        		sendIntent, 0);
 				        Intent deliveryIntent = new Intent(ACTION_SMS_DELIVERY);
 				        sendIntent.putExtra(SMS_SEND_ID, smswSend.getId());
-				        PendingIntent deliveryPI = PendingIntent.getBroadcast(this, 0,  
-				                deliveryIntent, 0); 
+				        PendingIntent deliveryPI = PendingIntent.getBroadcast(this, (int)smswSend.getId(),  
+				                deliveryIntent, 0);
 						SmsManager.getDefault().sendTextMessage(smswSend.getMbno(),
 								null, smswSend.getSms(), sendPI, deliveryPI);
 						if (temp == null) {

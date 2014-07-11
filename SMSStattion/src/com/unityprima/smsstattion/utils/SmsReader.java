@@ -1,6 +1,9 @@
 package com.unityprima.smsstattion.utils;
 
-import com.unityprima.smsstattion.entity.SMSMO;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -8,10 +11,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.telephony.TelephonyManager;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.sql.Timestamp;
+import com.unityprima.smsstattion.entity.SMSMO;
 
 /**
  * Created by Bobby on 2014/7/7.
@@ -33,12 +33,9 @@ public class SmsReader {
         Uri uri = Uri.parse("content://sms/");
         Cursor cursor = resolver.query(uri, new String[] {"_id", "address",
                 "person", "date", "type", "body"}, null, null, " date desc ");
-
-        SMSMO smsInfo;
-
+        SMSMO smsInfo = null;
         tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
         String currentSim = tm.getLine1Number();
-
         while(cursor.moveToNext()){
             // ALL = 0; INBOX = 1; SENT = 2; DRAFT = 3; OUTBOX = 4; FAILED = 5;
             // QUEUED = 6;
@@ -47,27 +44,19 @@ public class SmsReader {
                 smsInfo = new SMSMO();
                 Long id = cursor.getLong(0);
                 String mbno = cursor.getString(1);
-
                 String times_ms= cursor.getString(3);
                 Date times = new Date(Long.parseLong(times_ms));
                 Timestamp ts = new Timestamp(times.getTime());
                 String sms = cursor.getString(5);
-
                 smsInfo.setId(id);
                 smsInfo.setSms(sms);
                 smsInfo.setTimes(ts);
                 smsInfo.setMbno(mbno);
                 smsInfo.setSendSN(currentSim);
-
                 infos.add(smsInfo);
             }
         }
-
         cursor.close();
         return infos;
     }
-
-
-
-
 }
