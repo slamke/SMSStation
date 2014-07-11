@@ -1,13 +1,8 @@
 package com.unityprima.smsstattion.receiver;
 
-import static com.unityprima.smsstattion.sms.SMSModel.*;
+import static com.unityprima.smsstattion.sms.SMSModel.YES_STATUS;
 
 import java.util.Date;
-
-import com.activeandroid.query.Select;
-import com.unityprima.smsstattion.sms.SMSModel;
-import com.unityprima.smsstattion.utils.Constants;
-import com.unityprima.smsstattion.utils.DateParse;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -15,6 +10,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsManager;
 import android.util.Log;
+
+import com.activeandroid.query.Select;
+import com.unityprima.smsstattion.sms.SMSModel;
+import com.unityprima.smsstattion.utils.Constants;
+import com.unityprima.smsstattion.utils.DateParse;
 
 public class SMSReceiver extends BroadcastReceiver{
 	

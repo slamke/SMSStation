@@ -2,7 +2,6 @@ package com.unityprima.smsstattion.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
 /**
  * 短信发送表,表名:tb_Sent
  * @author sunke
@@ -49,7 +48,7 @@ public class SMSSent implements Serializable {
 	/**
 	 * SubmitTime	发送时间	Datetime	
 	 */
-	private Date submitTime;
+	private Timestamp submitTime;
 	
 	/**
 	 * PRI	短信优先级	Tinyint	值越大级别越高,优先发送
@@ -59,13 +58,13 @@ public class SMSSent implements Serializable {
 	/**
 	 * PsendTime	预发送时间	Datetime	
 	 */
-	private Date psendTime;
+	private Timestamp psendTime;
 	
 	
 	/**
 	 * PlastSendTime	最后发送时间	Datetime	短信的有效时间,超过该时间不发送
 	 */
-	private Date plastSendTime;
+	private Timestamp plastSendTime;
 	
 	/**
 	 * Status	短信状态	Nvarchar(30)	
@@ -75,12 +74,12 @@ public class SMSSent implements Serializable {
 	/**
 	 * SubmitRespTime	发送状态报告返回时间	Datetime	
 	 */
-	private Date submitRespTime;
+	private Timestamp submitRespTime;
 	
 	/**
 	 * ReceivedTime    	接收状态报告返回时间	Datetime	
 	 */
-	private Date reveivedTime;
+	private Timestamp reveivedTime;
 	
 	/**
 	 * SubmitStatus	发送状态	Nvarchar(30)	
@@ -142,15 +141,9 @@ public class SMSSent implements Serializable {
 		this.wtime = wtime;
 	}
 
-	public Date getSubmitTime() {
+	public Timestamp getSubmitTime() {
 		return submitTime;
 	}
-
-	public void setSubmitTime(Date submitTime) {
-		this.submitTime = submitTime;
-	}
-
-
 
 	public short getPri() {
 		return pri;
@@ -160,21 +153,6 @@ public class SMSSent implements Serializable {
 		this.pri = pri;
 	}
 
-	public Date getPsendTime() {
-		return psendTime;
-	}
-
-	public void setPsendTime(Date psendTime) {
-		this.psendTime = psendTime;
-	}
-
-	public Date getPlastSendTime() {
-		return plastSendTime;
-	}
-
-	public void setPlastSendTime(Date plastSendTime) {
-		this.plastSendTime = plastSendTime;
-	}
 
 	public String getStatus() {
 		return status;
@@ -184,20 +162,41 @@ public class SMSSent implements Serializable {
 		this.status = status;
 	}
 
-	public Date getSubmitRespTime() {
+
+	public Timestamp getPsendTime() {
+		return psendTime;
+	}
+
+	public void setPsendTime(Timestamp psendTime) {
+		this.psendTime = psendTime;
+	}
+
+	public Timestamp getPlastSendTime() {
+		return plastSendTime;
+	}
+
+	public void setPlastSendTime(Timestamp plastSendTime) {
+		this.plastSendTime = plastSendTime;
+	}
+
+	public Timestamp getSubmitRespTime() {
 		return submitRespTime;
 	}
 
-	public void setSubmitRespTime(Date submitRespTime) {
+	public void setSubmitRespTime(Timestamp submitRespTime) {
 		this.submitRespTime = submitRespTime;
 	}
 
-	public Date getReveivedTime() {
+	public Timestamp getReveivedTime() {
 		return reveivedTime;
 	}
 
-	public void setReveivedTime(Date reveivedTime) {
+	public void setReveivedTime(Timestamp reveivedTime) {
 		this.reveivedTime = reveivedTime;
+	}
+
+	public void setSubmitTime(Timestamp submitTime) {
+		this.submitTime = submitTime;
 	}
 
 	public String getSubmitStatus() {

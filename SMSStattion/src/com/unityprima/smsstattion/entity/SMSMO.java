@@ -1,6 +1,6 @@
 package com.unityprima.smsstattion.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * 短信接收表,表名tb_MO
@@ -22,7 +22,7 @@ public class SMSMO {
 	/**
 	 * Times	接收时间	Datetime	
 	 */
-	private Date times;
+	private Timestamp times;
 	/**
 	 * Mbno	回复手机号	Nvarchar(30)	  发短信的手机号
 	 */
@@ -43,10 +43,11 @@ public class SMSMO {
 	public void setSms(String sms) {
 		this.sms = sms;
 	}
-	public Date getTimes() {
+
+	public Timestamp getTimes() {
 		return times;
 	}
-	public void setTimes(Date times) {
+	public void setTimes(Timestamp times) {
 		this.times = times;
 	}
 	public String getMbno() {

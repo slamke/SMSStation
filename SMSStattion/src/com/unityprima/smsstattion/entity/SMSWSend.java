@@ -2,7 +2,6 @@ package com.unityprima.smsstattion.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * 短信待发表,表名:tb_WSend
@@ -48,7 +47,7 @@ public class SMSWSend implements Serializable{
 	/**
 	 * SubmitTime	发送时间	Datetime	
 	 */
-	private Date submitTime;
+	private Timestamp submitTime;
 	/**
 	 * PRI	发送优先级	Tinyint	值越大级别越高,优先发送
 	 */
@@ -56,12 +55,12 @@ public class SMSWSend implements Serializable{
 	/**
 	 * PsendTime	预发送时间	Datetime	
 	 */
-	private Date psendTime;
+	private Timestamp psendTime;
 	/**
 	 * PlastSendTime	最后发送时间	Datetime	短信的有效时间,超过该时间不发送
 	 * 若短信有“预发送时间”和“最后发送时间”，且当前时间大于“最后发送时间”，无论短信的状态是否为0，短信搬运模块应当把该短信搬运到该表中
 	 */
-	private Date plastSendTime;
+	private Timestamp plastSendTime;
 	/**
 	 * Status	状态	Nvarchar(30)	初始值应为'0'，表明待发送，发送完毕后该字段会更改为'Submit'
 	 * //若，短信的状态为0，则短信搬运模块不能把该短信搬运到该表中；
@@ -104,12 +103,6 @@ public class SMSWSend implements Serializable{
 	public void setWtime(Timestamp wtime) {
 		this.wtime = wtime;
 	}
-	public Date getSubmitTime() {
-		return submitTime;
-	}
-	public void setSubmitTime(Date submitTime) {
-		this.submitTime = submitTime;
-	}
 
 	public short getPri() {
 		return pri;
@@ -117,16 +110,23 @@ public class SMSWSend implements Serializable{
 	public void setPri(short pri) {
 		this.pri = pri;
 	}
-	public Date getPsendTime() {
+
+	public Timestamp getSubmitTime() {
+		return submitTime;
+	}
+	public void setSubmitTime(Timestamp submitTime) {
+		this.submitTime = submitTime;
+	}
+	public Timestamp getPsendTime() {
 		return psendTime;
 	}
-	public void setPsendTime(Date psendTime) {
+	public void setPsendTime(Timestamp psendTime) {
 		this.psendTime = psendTime;
 	}
-	public Date getPlastSendTime() {
+	public Timestamp getPlastSendTime() {
 		return plastSendTime;
 	}
-	public void setPlastSendTime(Date plastSendTime) {
+	public void setPlastSendTime(Timestamp plastSendTime) {
 		this.plastSendTime = plastSendTime;
 	}
 	public String getStatus() {
