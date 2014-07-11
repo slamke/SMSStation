@@ -26,7 +26,7 @@ public class Message {
 	public final static String NETWORK_FAIL = "network_error";
 	
 	/****************************以下是短信提示内容*****************/
-	public final static String POWER_LOW_AND_NOT_CHARGE = "您好，短信中转站的手机电池电量已经低于5%，请及时充电并且检查手机";
+	public final static String POWER_LOW_AND_NOT_CHARGE = "您好，短信中转站的手机电池电量已经低于5%，请及时充电并且检查手机.";
 	
 	public final static String SWITCH_OFF_RECEIVE = "短信接收模块已成功关闭";
 	

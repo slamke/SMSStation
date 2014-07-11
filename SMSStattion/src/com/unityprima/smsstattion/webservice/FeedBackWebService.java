@@ -7,6 +7,7 @@ import java.util.Map;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.unityprima.smsstattion.entity.SMSSent;
 import com.unityprima.smsstattion.utils.ClassParse;
@@ -50,6 +51,7 @@ public class FeedBackWebService extends BasicWebService{
 		map.put(Message.KEY, key);
 		String content = new ClassParse().object2String(sentList);
 		map.put(Message.CONTENT, content);
+		Log.e("feedback", content);
 		// result可能为：Message.SUCCESS--Message.ERROR--Message.NETWORK_FAIL
 		String result = sendPostRequest(_url, map);
 		// 表示网络错误或者服务器错误

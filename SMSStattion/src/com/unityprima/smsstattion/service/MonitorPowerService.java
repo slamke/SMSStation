@@ -44,6 +44,7 @@ public class MonitorPowerService extends Service {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
+		unregisterReceiver(batteryChangedReceiver);
 	}
 
 	// 接受电池信息更新的广播

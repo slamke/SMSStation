@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/body_margin_left_right"
         android:layout_marginRight="@dimen/body_margin_left_right"
-        android:layout_marginTop="@dimen/title_height" >
+        android:layout_marginTop="@dimen/title_height"
+        >
 
         <TableLayout
             android:layout_width="fill_parent"

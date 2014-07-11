@@ -8,6 +8,7 @@ import static com.unityprima.smsstattion.utils.Constants.SMS_SEND_ID;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.IBinder;
 import android.telephony.SmsManager;
+import android.util.Log;
 
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
@@ -68,29 +70,59 @@ public class SMSIntentService extends IntentService {
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		// Intent是从Activity发过来的，携带识别参数，根据参数不同执行不同的任务
+		//Intent是从Activity发过来的，携带识别参数，根据参数不同执行不同的任务
 		String action = intent.getExtras().getString(Constants.OPERATION_TYPE);
 		if (action.equals(Constants.OPERATION_FEED_BACK)) {
 			List<SMSModel> list = new Select().from(SMSModel.class).where("status = ?", YES_STATUS).execute();
-			if (list == null || list.size() == 0) {
+			List<SMSModel> other = new Select().from(SMSModel.class).where("status = ?", NOT_STATUS).execute();
+			if (list != null) {
+				System.out.println("list size:"+list.size());
+			}
+			if (other != null) {
+				System.out.println("other size:"+other.size());
+			}
+			
+			List<SMSModel> cur = new ArrayList<SMSModel>();
+			final long ONEDAY =86400000;
+			if (other != null && other.size()>0 ) {
+				for (SMSModel smsModel : other) {
+					long time = new DateParse().string2Date(smsModel.submitTime).getTime();
+					if ((Calendar.getInstance().getTime().getTime() - time) > ONEDAY) {
+						cur.add(smsModel);
+					}
+				}
+			}
+			if (list != null && list.size() > 0) {
+				cur.addAll(list);
+			}
+			if (cur.size() == 0) {
 				return;
 			}
 			List<SMSSent> sentList = new ArrayList<SMSSent>();
-			for (SMSModel model : list) {
+			for (SMSModel model : cur) {
 				SMSSent sent = new SMSSent();
 				DateParse parse = new DateParse();
 				sent.setWsendId(model.smsid);
 				sent.setReveivedStatus(model.reveivedStatus);
-				sent.setReveivedTime(new Timestamp(parse.string2Date(model.reveivedTime).getTime()));
-				sent.setSubmitTime(new Timestamp(parse.string2Date(model.submitTime).getTime()));
-				sent.setSubmitRespTime(new Timestamp(parse.string2Date(model.submitRespTime).getTime()));
+				Date reveivedTime =parse.string2Date(model.reveivedTime);
+				if (reveivedTime != null) {
+					sent.setReveivedTime(new Timestamp(reveivedTime.getTime()));
+				}
+				Date submitTime = parse.string2Date(model.submitTime);
+				if (submitTime != null) {
+					sent.setSubmitTime(new Timestamp(submitTime.getTime()));
+				}
+				Date submitRespTime = parse.string2Date(model.submitRespTime);
+				if (submitRespTime != null) {
+					sent.setSubmitRespTime(new Timestamp(submitRespTime.getTime()));
+				}
 				sent.setSubmitStatus(model.submitStatus);
 				sentList.add(sent);
 			}
 			FeedBackWebService feedBackWebService = new FeedBackWebService(this);
 			String res = feedBackWebService.feedBackWithSuccessSMS(sentList);
 			if (res.equals(Message.SUCCESS)) {
-				for (SMSModel model : list) {
+				for (SMSModel model : cur) {
 					new Delete().from(SMSModel.class).where("smsid = ?", model.smsid).execute();
 				}
 			}else {
@@ -117,9 +149,10 @@ public class SMSIntentService extends IntentService {
 					if (smswSend.getSms() != null && !smswSend.getSms().equals("")) {
 						SMSModel temp = new Select().from(SMSModel.class).where("smsid = ?", smswSend.getId()).executeSingle();
 						//该短信已经成功发送
-						if (temp != null && temp.status.equals(YES_STATUS)) {
+						if (temp != null) {
 							continue;
 						}
+						
 						Intent sendIntent = new Intent(ACTION_SMS_SEND);
 				        sendIntent.putExtra(SMS_SEND_ID, smswSend.getId());
 				        PendingIntent sendPI = PendingIntent.getBroadcast(this, 0, 
@@ -139,6 +172,7 @@ public class SMSIntentService extends IntentService {
 							model.sendsn = smswSend.getSendsn();
 							model.sms = smswSend.getSms();
 							model.smsid = smswSend.getId();
+							Log.e("smsid:", ""+smswSend.getId());
 							model.status = NOT_STATUS;
 							model.submitRespTime = NOT_STATUS;
 							model.submitStatus = NOT_STATUS;
