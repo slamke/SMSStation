@@ -1,6 +1,7 @@
 package com.unityprima.smsstattion.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 /**
  * 短信发送表,表名:tb_Sent
@@ -43,7 +44,7 @@ public class SMSSent implements Serializable {
 	/**
 	 * Wtime	短信写入时间	Datetime	
 	 */
-	private Date wtime;
+	private Timestamp wtime;
 	
 	/**
 	 * SubmitTime	发送时间	Datetime	
@@ -131,11 +132,13 @@ public class SMSSent implements Serializable {
 		this.sms = sms;
 	}
 
-	public Date getWtime() {
+	
+
+	public Timestamp getWtime() {
 		return wtime;
 	}
 
-	public void setWtime(Date wtime) {
+	public void setWtime(Timestamp wtime) {
 		this.wtime = wtime;
 	}
 
