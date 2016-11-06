@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 /**
  * IntentService会自己开一个线程，
- * AlarmManager加PendingIntent可以实现没两小时发个广播，
+ * AlarmManager加PendingIntent可以实现每两小时发个广播，
  * 然后Reciever启动这个Service,Service干完活后stop掉。
  * @author sunke
  *

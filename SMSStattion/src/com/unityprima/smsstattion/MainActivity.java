@@ -165,6 +165,11 @@ public class MainActivity extends Activity implements OnClickListener{
         	//重新启动主service
         	Intent smsStationService = new Intent(this,SMSStationService.class);
             startService(smsStationService);
+            SharedPreferences sp = getSharedPreferences(
+					Message.PREFERENCE_NAME, MODE_PRIVATE); // 获得Preferences
+            SharedPreferences.Editor editor = sp.edit(); // 获得Editor
+			editor.putBoolean(Message.POWER_LOW_NOTICE, false);
+			editor.commit();
         }  
         super.onActivityResult(requestCode, resultCode, data);  
     }

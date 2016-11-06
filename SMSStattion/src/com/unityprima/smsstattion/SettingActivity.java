@@ -45,7 +45,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 	//加载数据
 	protected void initViews(){
 		SharedPreferences settingInfo = getSharedPreferences(Message.PREFERENCE_NAME, MODE_PRIVATE); 
-        int messageLoopClock = settingInfo.getInt(Message.MESSAGE_LOOP_CLOCK, DefaultSettingInfo.DEFAULT_LOOP_CYCLE);  
+        float messageLoopClock = settingInfo.getFloat(Message.MESSAGE_LOOP_CLOCK, DefaultSettingInfo.DEFAULT_LOOP_CYCLE);  
         int powerThreshold = settingInfo.getInt(Message.POWER_THRESHOLD, DefaultSettingInfo.DEFAULT_WARNING_POWER_THRESHOLD);
         String noticerPhoneNumber = settingInfo.getString(Message.NOTICER_PHONE_NUMBER, "");
         String severAddress = settingInfo.getString(Message.SEVER_ADDRESS, "");
@@ -65,7 +65,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 		case R.id.save_setting_button:
 			String loopCycle = messageLoopClockSetting.getText().toString();
 			if(loopCycle != null && !loopCycle.equals("")){
-				int cycle = Integer.parseInt(loopCycle);
+				double cycle = Float.parseFloat(loopCycle.trim());
 				if ( cycle<0 ) {
 					messageLoopClockSetting.setError(Message.TIP_NOT_SET_CYCLE);
 					return;
@@ -76,7 +76,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 			}
 			String powerThresHold = powerThresholdSetting.getText().toString();
 			if(powerThresHold != null && !powerThresHold.equals("")){
-				int threshold = Integer.parseInt(powerThresHold);
+				int threshold = Integer.parseInt(powerThresHold.trim());
 				if (threshold>99 || threshold < 1) {
 					powerThresholdSetting.setError(Message.TIP_NOT_SET_THRESHOLD);
 					return;
@@ -98,10 +98,10 @@ public class SettingActivity extends Activity implements OnClickListener{
 			}
 			SharedPreferences sp = getSharedPreferences(Message.PREFERENCE_NAME, MODE_PRIVATE);
 			SharedPreferences.Editor editor = sp.edit(); // 获得Editor
-			editor.putInt(Message.MESSAGE_LOOP_CLOCK, Integer.parseInt(loopCycle));
-			editor.putInt(Message.POWER_THRESHOLD, Integer.parseInt(powerThresHold));
-			editor.putString(Message.NOTICER_PHONE_NUMBER,phoneNum);
-			editor.putString(Message.SEVER_ADDRESS, serverAddr);
+			editor.putFloat(Message.MESSAGE_LOOP_CLOCK, Float.parseFloat(loopCycle.trim()));
+			editor.putInt(Message.POWER_THRESHOLD, Integer.parseInt(powerThresHold.trim()));
+			editor.putString(Message.NOTICER_PHONE_NUMBER,phoneNum.trim());
+			editor.putString(Message.SEVER_ADDRESS, serverAddr.trim());
 			editor.commit();
 			goBack();
 			break;

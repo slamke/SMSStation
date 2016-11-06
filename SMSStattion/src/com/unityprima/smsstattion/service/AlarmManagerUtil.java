@@ -57,9 +57,12 @@ public class AlarmManagerUtil {
 		    long firstime=SystemClock.elapsedRealtime();
 		    AlarmManager am = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
 		    SharedPreferences settingInfo = ctx.getSharedPreferences(Message.PREFERENCE_NAME, Context.MODE_PRIVATE); 
-	        int messageLoopClock = settingInfo.getInt(Message.MESSAGE_LOOP_CLOCK, DefaultSettingInfo.DEFAULT_LOOP_CYCLE);
-		    //int cycle = messageLoopClock*60*1000;
-	        int cycle = messageLoopClock*1000;
+	        float messageLoopClock = settingInfo.getFloat(Message.MESSAGE_LOOP_CLOCK, DefaultSettingInfo.DEFAULT_LOOP_CYCLE);
+		    //TODO---DEBUG
+	        //int cycle = (int)(messageLoopClock*1000);
+	        int cycle = (int)(messageLoopClock*60*1000);
+		    Log.e("cycle", ""+cycle);
+	        //int cycle = messageLoopClock*1000;
 	        //设置一个周期，不停的发送广播
 		    am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstime, cycle, pendingIntent);
 		}

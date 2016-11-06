@@ -18,7 +18,7 @@ public class TransferWebService extends BasicWebService{
 	/**
 	 * 服务器其的url地址
 	 */
-	private final String URL = "service/transfer/notify";
+	private final String URL = "SMSTransferService/service/transfer/notify";
 	private Context _context;
 	public TransferWebService(Context _context) {
 		super();

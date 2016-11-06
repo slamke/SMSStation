@@ -25,7 +25,7 @@ public class LoaderWebService extends BasicWebService {
 	/**
 	 * 服务器其的url地址
 	 */
-	private final String URL = "service/send/list";
+	private final String URL = "SMSTransferService/service/send/list";
 	
 	private Context _context;
 

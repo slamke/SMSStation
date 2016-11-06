@@ -24,7 +24,7 @@ public class FeedBackWebService extends BasicWebService{
 	/**
 	 * 服务器其的url地址
 	 */
-	private final String URL = "service/send/feedback";
+	private final String URL = "SMSTransferService/service/send/feedback";
 	
 	private Context _context;
 

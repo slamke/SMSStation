@@ -24,7 +24,7 @@ public class UploadWebService extends BasicWebService {
 	/**
 	 * 服务器其的url地址
 	 */
-	private final String URL = "service/receive/items";
+	private final String URL = "SMSTransferService/service/receive/items";
 	private Context _context;
 
 	public UploadWebService(Context _context) {
