@@ -58,10 +58,10 @@ public class AlarmManagerUtil {
 		    AlarmManager am = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
 		    SharedPreferences settingInfo = ctx.getSharedPreferences(Message.PREFERENCE_NAME, Context.MODE_PRIVATE); 
 	        float messageLoopClock = settingInfo.getFloat(Message.MESSAGE_LOOP_CLOCK, DefaultSettingInfo.DEFAULT_LOOP_CYCLE);
-		    //TODO---DEBUG
-	        //int cycle = (int)(messageLoopClock*1000);
+		    // FIXME  确定此处正常
+	        // int cycle = (int)(messageLoopClock*1000);
 	        int cycle = (int)(messageLoopClock*60*1000);
-		    Log.e("cycle", ""+cycle);
+		    Log.i("SMSStation cycle(ms)", ""+cycle);
 	        //int cycle = messageLoopClock*1000;
 	        //设置一个周期，不停的发送广播
 		    am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstime, cycle, pendingIntent);

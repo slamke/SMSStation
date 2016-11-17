@@ -52,33 +52,33 @@ public class SMSIntentService extends IntentService {
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		System.out.println("onBind");
+		Log.i("SMSIntentService", "onBind");
 		return super.onBind(intent);
 	}
 
 	@Override
 	public void onCreate() {
-		System.out.println("onCreate");
+		Log.i("SMSIntentService", "onCreate");
 		super.onCreate();
 		h=new Handler();
 	}
 
 	@Override
 	public void onStart(Intent intent, int startId) {
-		System.out.println("onStart");
+		Log.i("SMSIntentService", "onStart");
 		super.onStart(intent, startId);
 	}
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		System.out.println("onStartCommand");
+		Log.i("SMSIntentService", "onStartCommand");
 		return super.onStartCommand(intent, flags, startId);
 	}
 
 	@Override
 	public void setIntentRedelivery(boolean enabled) {
 		super.setIntentRedelivery(enabled);
-		System.out.println("setIntentRedelivery");
+		Log.i("SMSIntentService", "setIntentRedelivery");
 	}
 
 	@Override
@@ -161,19 +161,18 @@ public class SMSIntentService extends IntentService {
 			}
 		}else if (action.equals(Constants.OPERATION_RECEIVE)) {
 			try {
-				List<SMSMO> list = new SmsReader(this).getSmsInfo();
-				// 过滤已经转义的短信
+				List<SMSMO> list = new SmsReader(this).getSmsInfo();			
+				// 过滤已经转移的短信
 				list = filterReceivedSMS(list);
-				
 				List<SMSMO> smsList = SMSMO.splitList(list);
 	            UploadWebService uploadWebService = new UploadWebService(this);
 	            String feedBackFromSever = null;
 	            if(smsList != null){
 	                feedBackFromSever = uploadWebService.sendSMSMOList(smsList);
-	                //Log.e("feedBackFromSever:", feedBackFromSever);
+	                Log.i("feedBackFromSever:", feedBackFromSever);
 	                if (feedBackFromSever.equals(Message.SUCCESS)){
 	                    List<Long> id_Upload = new ArrayList<Long>();
-	                    for(SMSMO temp : smsList){
+	                    for(SMSMO temp : list){
 	                        id_Upload.add(temp.getId());
 	                        
 	                        // 记录转义记录，防止重复转移
@@ -272,7 +271,7 @@ public class SMSIntentService extends IntentService {
                     	Toast.makeText(getApplicationContext(), Message.TIP_NOT_SET_SERVER, Toast.LENGTH_SHORT).show();
                     }  
                 });  
-			}
+			} 
 		}else if (action.equals(Constants.OPERATION_TRANSFER)) {
 			try {
 				TransferWebService transferWebService = new TransferWebService(this);

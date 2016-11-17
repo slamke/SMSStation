@@ -30,8 +30,8 @@ public class BatteryChangedReceiver extends BroadcastReceiver{
 		} else if (level < 5) {
 			sms = Message.POWER_LOW_AND_NOT_CHARGE;
 		}
-		Log.e("smslevel:", "" + level);
-		Log.e("smstel:", "123" + tel);
+		Log.e("Battery Level:", "" + level);
+		Log.e("Alter Tel:", tel);
 		if(tel != null && !tel.equals("")  && sms!= null){
 			SmsManager.getDefault().sendTextMessage(tel, null, sms, null,
 					null);

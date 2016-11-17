@@ -94,8 +94,8 @@ public class SMSMO {
 		} else {
 			String type = smsmo.getSms().substring(0, 4);
 			int start = 0;
-			int end = 170;
 			length = smsmo.getSms().length();
+			int end = 170 > length ? length : 170;
 			while( start < length){
 				StringBuffer buffer = new StringBuffer();
 				if (start != 0) {
@@ -130,4 +130,10 @@ public class SMSMO {
 		return new MD5().getMD5Str(tmp);
 		
 	}
+	@Override
+	public String toString() {
+		return "SMSMO [id=" + id + ", sms=" + sms + ", times=" + times
+				+ ", mbno=" + mbno + ", sendSN=" + sendSN + "]";
+	}
+	
 }

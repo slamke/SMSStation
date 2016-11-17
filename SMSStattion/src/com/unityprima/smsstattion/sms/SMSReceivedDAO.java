@@ -13,4 +13,11 @@ public class SMSReceivedDAO {
 	        .execute();
 	    return (list == null || list.isEmpty()) ? false : true;
 	}
+	
+	public long size() {
+		List<SMSReceived> list =  new Select()
+        .from(SMSReceived.class)
+        .execute();
+		return (list == null || list.isEmpty()) ? 0 : list.size();
+	}
 }
